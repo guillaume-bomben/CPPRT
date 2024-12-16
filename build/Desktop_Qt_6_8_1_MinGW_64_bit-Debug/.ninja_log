@@ -1,0 +1,9 @@
+# ninja log v6
+6	555	7560438535677375	CPPRT_autogen/timestamp	224a70f5d3c59160
+6	555	7560438535677375	CPPRT_autogen/mocs_compilation.cpp	224a70f5d3c59160
+6	555	7560438535677375	C:/Users/bombe/Documents/CPPRT/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CPPRT_autogen/timestamp	224a70f5d3c59160
+6	555	7560438535677375	C:/Users/bombe/Documents/CPPRT/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/CPPRT_autogen/mocs_compilation.cpp	224a70f5d3c59160
+559	1855	7560438536421894	CMakeFiles/CPPRT.dir/CPPRT_autogen/mocs_compilation.cpp.obj	a403383b3a155399
+563	1923	7560438536474992	CMakeFiles/CPPRT.dir/main.cpp.obj	84000b45134e2a76
+568	1938	7560438536505327	CMakeFiles/CPPRT.dir/mainwindow.cpp.obj	8f447ca1cc74becd
+1938	2118	7560438550128016	CPPRT.exe	d5056a1e2f46256b
