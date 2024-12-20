@@ -16,8 +16,13 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void OnSendButton();
+    void OnYouButton();
+    void OnOtherButton();
 
 private:
     Ui::MainWindow *ui;
+    bool you;
+    bool first;
 };
 #endif // MAINWINDOW_H

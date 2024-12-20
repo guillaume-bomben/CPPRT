@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "CPPRT::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-CPPRT-Debug-7fca9659d0cb7e1f0da7.json",
+					"jsonFile" : "target-CPPRT-Debug-51f50b2a45936b40d46d.json",
 					"name" : "CPPRT",
 					"projectIndex" : 0
 				},
@@ -68,8 +68,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/bombe/Documents/CPPRT/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug",
-		"source" : "C:/Users/bombe/Documents/CPPRT"
+		"build" : "C:/Users/Moi/Documents/GitHub/CPPRT/build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug",
+		"source" : "C:/Users/Moi/Documents/GitHub/CPPRT"
 	},
 	"version" : 
 	{
