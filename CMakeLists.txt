@@ -1,70 +1,68 @@
 cmake_minimum_required(VERSION 3.16)
 
+# Nom et version du projet
 project(CPPRT VERSION 0.1 LANGUAGES CXX)
 
+# Activer les fonctionnalités automatiques de Qt
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
+# Configurer la version standard de C++
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+# Trouver les modules Qt requis (Widgets et Network)
+find_package(QT NAMES Qt6 REQUIRED COMPONENTS Widgets Network)
+find_package(Qt6 REQUIRED COMPONENTS Widgets Network)
 
+# Fichiers sources et en-têtes
 set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-        mainwindow.ui
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+    tcpserverwindow.cpp
+    tcpserverwindow.h
+    clientwindow.cpp
+    clientwindow.h
+
 )
 
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(CPPRT
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
+# Ajouter l'exécutable
+qt_add_executable(CPPRT
+    MANUAL_FINALIZATION
+    ${PROJECT_SOURCES}
+    clientwindow.ui
+
+)
+
+# Lier les bibliothèques Qt nécessaires
+target_link_libraries(CPPRT PRIVATE Qt6::Widgets Qt6::Network)
+
+# Configuration pour macOS (si applicable)
+if(APPLE)
+    set_target_properties(CPPRT PROPERTIES
+        MACOSX_BUNDLE TRUE
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+        MACOSX_BUNDLE_GUI_IDENTIFIER com.example.CPPRT
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET CPPRT APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(CPPRT SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(CPPRT
-            ${PROJECT_SOURCES}
-        )
-    endif()
 endif()
 
-target_link_libraries(CPPRT PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.CPPRT)
+# Configuration pour Windows (si applicable)
+if(WIN32)
+    set_target_properties(CPPRT PROPERTIES
+        WIN32_EXECUTABLE TRUE
+    )
 endif()
-set_target_properties(CPPRT PROPERTIES
-    ${BUNDLE_ID_OPTION}
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
 
-include(GNUInstallDirs)
+# Installation des fichiers
 install(TARGETS CPPRT
     BUNDLE DESTINATION .
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(CPPRT)
-endif()
+# Finalisation pour Qt 6
+qt_finalize_executable(CPPRT)

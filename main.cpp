@@ -1,11 +1,22 @@
-#include "mainwindow.h"
-
+//#include "mainwindow.h"
+#include "tcpserverwindow.h"
+#include "clientwindow.h"
+//#include "registrationserver.h"
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-    MainWindow w;
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    //RegistrationServer server;
+
+    TcpServerWindow serverWindow;
+    serverWindow.show();
+
+    ClientWindow w;
     w.show();
-    return a.exec();
+
+    ClientWindow a;
+    a.show();
+
+    return app.exec();
 }
+
