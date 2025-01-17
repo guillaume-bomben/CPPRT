@@ -72,13 +72,13 @@ void TcpServerWindow::onReadyRead() {
         QString username = clientUsernames[clientSocket];
 
         // Gestion des messages
-        if (message == "WIZZ") {
+        if (message == "/WIZZ") {
             logMessage("WIZZ reçu de : " + username);
 
             // Diffuse le Wizz à tous les autres clients
             for (QTcpSocket *client : clients) {
                 if (client != clientSocket) {
-                    client->write("WIZZ\n");
+                    client->write("/WIZZ\n");
                 }
             }
         } else {

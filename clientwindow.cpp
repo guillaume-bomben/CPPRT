@@ -63,7 +63,7 @@ void ClientWindow::onReadyRead() {
     QByteArray data = socket->readAll();
     QString message = QString(data).trimmed();
 
-    if (message == "WIZZ") {
+    if (message == "/WIZZ") {
         vibrateWindow();
     } else {
         ui->chatTextEdit->append(message);
@@ -91,7 +91,7 @@ void ClientWindow::sendMessage() {
 
 void ClientWindow::sendWizz() {
     if (socket->state() == QAbstractSocket::ConnectedState) {
-        socket->write("WIZZ\n");
+        socket->write("/WIZZ\n");
     } else {
         QMessageBox::warning(this, "Erreur", "Vous n'êtes pas connecté au serveur.");
     }
